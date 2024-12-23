@@ -34,6 +34,9 @@ public class GreetingService implements ListService<Greeting>, CountService {
     }
 
     public void greet(String name) {
+        if ("fail".equals(name)) {
+            throw new RuntimeException("This is for testing the error handler");
+        }
         var greeting = new Greeting();
         greeting.setGreeting("Hello %s!".formatted(name));
         greeting.setGreetingDate(clock.instant());
