@@ -4,6 +4,7 @@ import {Notification} from "@vaadin/react-components/Notification"
 import {useDataProvider} from "@vaadin/hilla-react-crud";
 import {GreetingService} from "Frontend/generated/endpoints";
 import {useSignal} from "@vaadin/hilla-react-signals";
+import handleError from "Frontend/utils/ErrorHandler";
 
 export const config: ViewConfig = {
     title: "Greetings from Hilla",
@@ -22,10 +23,15 @@ export default function GreetingView() {
     const dataProvider = useDataProvider(GreetingService)
     const name = useSignal("");
     const greet = async () => {
-        await GreetingService.greet(name.value)
-        dataProvider.refresh()
-        name.value = ""
-        Notification.show("Greeting added", {duration: 1000, position: "middle"})
+        // TODO This is not really React-like, more like a Java dev trying to write React code for the first time.
+        try {
+            await GreetingService.greet(name.value)
+            dataProvider.refresh()
+            name.value = ""
+            Notification.show("Greeting added", {duration: 1000, position: "middle"})
+        } catch (error) {
+            handleError(error)
+        }
     }
     return (
         <main className="w-full h-full flex flex-col box-border gap-s p-m">
