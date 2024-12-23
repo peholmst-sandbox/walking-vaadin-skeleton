@@ -1,5 +1,6 @@
 package com.example.application.base.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.MappedSuperclass;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.util.ProxyUtils;
@@ -7,6 +8,7 @@ import org.springframework.data.util.ProxyUtils;
 @MappedSuperclass
 public abstract class AbstractEntity<ID> {
 
+    @JsonIgnore // Hilla should not generate an unknown ID in the AbstractEntityModel.
     public abstract @Nullable ID getId();
 
     @Override
