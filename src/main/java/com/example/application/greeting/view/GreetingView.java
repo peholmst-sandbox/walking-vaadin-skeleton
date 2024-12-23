@@ -7,6 +7,7 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.Menu;
@@ -67,7 +68,7 @@ public class GreetingView extends Main {
         greetingService.greet(name.getValue());
         dataProvider.refreshAll();
         name.clear();
-        Notification.show("Greeting added", 1000, Notification.Position.MIDDLE);
+        Notification.show("Greeting added", 3000, Notification.Position.BOTTOM_END).addThemeVariants(NotificationVariant.LUMO_SUCCESS);
     }
 
     private void refresh() {

@@ -20,7 +20,7 @@ class MainErrorHandler implements ErrorHandler {
         event.getComponent().flatMap(Component::getUI).ifPresent(ui -> {
             var notification = new Notification("An unexpected error has occurred. Please try again later.");
             notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-            notification.setPosition(Notification.Position.MIDDLE);
+            notification.setPosition(Notification.Position.TOP_CENTER);
             notification.setDuration(3000);
             ui.access(notification::open);
         });

@@ -4,7 +4,7 @@ import {Notification} from "@vaadin/react-components/Notification"
 import {useDataProvider} from "@vaadin/hilla-react-crud";
 import {GreetingService} from "Frontend/generated/endpoints";
 import {useSignal} from "@vaadin/hilla-react-signals";
-import handleError from "Frontend/utils/ErrorHandler";
+import handleError from "Frontend/views/_ErrorHandler";
 
 export const config: ViewConfig = {
     title: "Greetings from Hilla",
@@ -28,7 +28,7 @@ export default function GreetingView() {
             await GreetingService.greet(name.value)
             dataProvider.refresh()
             name.value = ""
-            Notification.show("Greeting added", {duration: 1000, position: "middle"})
+            Notification.show("Greeting added", {duration: 3000, position: "bottom-end", theme: "success"})
         } catch (error) {
             handleError(error)
         }
