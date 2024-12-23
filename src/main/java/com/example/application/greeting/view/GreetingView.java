@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 @Route("")
-@PageTitle("Greetings from Vaadin")
+@PageTitle("Greetings from Flow")
 @Menu(order = 0, icon = "vaadin:cubes")
 public class GreetingView extends Main {
 
