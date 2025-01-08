@@ -26,15 +26,16 @@ import java.time.format.FormatStyle;
 public class GreetingView extends Main {
 
     private final GreetingService greetingService;
+
     private final DataProvider<Greeting, Void> dataProvider;
+
     private final TextField name;
 
     public GreetingView(GreetingService greetingService, Clock clock) {
         this.greetingService = greetingService;
         dataProvider = DataProvider.fromCallbacks(
                 query -> greetingService.list(VaadinSpringDataHelpers.toSpringPageRequest(query), null).stream(),
-                query -> (int) greetingService.count(null)
-        );
+                query -> (int) greetingService.count(null));
 
         name = new TextField();
         name.setPlaceholder("What is your name?");
@@ -43,8 +44,7 @@ public class GreetingView extends Main {
         var greetBtn = new Button("Greet", event -> greet());
         var refreshBtn = new Button("Refresh", event -> refresh());
 
-        var dateFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
-                .withZone(clock.getZone())
+        var dateFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withZone(clock.getZone())
                 .withLocale(getLocale());
 
         var greetingGrid = new Grid<>(dataProvider);
@@ -68,10 +68,12 @@ public class GreetingView extends Main {
         greetingService.greet(name.getValue());
         dataProvider.refreshAll();
         name.clear();
-        Notification.show("Greeting added", 3000, Notification.Position.BOTTOM_END).addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        Notification.show("Greeting added", 3000, Notification.Position.BOTTOM_END)
+                .addThemeVariants(NotificationVariant.LUMO_SUCCESS);
     }
 
     private void refresh() {
         dataProvider.refreshAll();
     }
+
 }

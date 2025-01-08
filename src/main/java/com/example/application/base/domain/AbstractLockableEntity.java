@@ -18,4 +18,5 @@ public abstract class AbstractLockableEntity<ID> extends AbstractEntity<ID> {
     protected void setVersion(int version) {
         this.version = version;
     }
+
 }

@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 public class MainLayout extends AppLayout {
 
     private final String applicationName;
+
     private final H1 viewTitle;
 
     public MainLayout(@Value("${spring.application.name}") String applicationName) {
@@ -65,4 +66,5 @@ public class MainLayout extends AppLayout {
     private String getCurrentPageTitle() {
         return MenuConfiguration.getPageHeader(getContent()).orElse("");
     }
+
 }

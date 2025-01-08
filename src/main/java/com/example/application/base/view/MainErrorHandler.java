@@ -25,4 +25,5 @@ class MainErrorHandler implements ErrorHandler {
             ui.access(notification::open);
         });
     }
+
 }

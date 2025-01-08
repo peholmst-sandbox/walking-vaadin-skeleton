@@ -26,6 +26,7 @@ import java.util.List;
 public class GreetingService implements ListService<Greeting>, CountService {
 
     private final GreetingRepository dummyRepository;
+
     private final Clock clock;
 
     GreetingService(GreetingRepository dummyRepository, Clock clock, Validator validator) {
@@ -52,4 +53,5 @@ public class GreetingService implements ListService<Greeting>, CountService {
     public long count(@Nullable Filter filter) {
         return dummyRepository.count(JpaFilterConverter.toSpec(filter, Greeting.class));
     }
+
 }

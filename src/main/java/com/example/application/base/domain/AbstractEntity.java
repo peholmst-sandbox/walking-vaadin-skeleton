@@ -38,4 +38,5 @@ public abstract class AbstractEntity<ID> {
             return id.equals(((AbstractEntity<?>) obj).getId());
         }
     }
+
 }

@@ -21,10 +21,12 @@ public class Application implements AppShellConfigurator {
 
     @Bean
     public VaadinServiceInitListener errorHandlerInitializer(ErrorHandler errorHandler) {
-        return (event) -> event.getSource().addSessionInitListener(sessionInitEvent -> sessionInitEvent.getSession().setErrorHandler(errorHandler));
+        return (event) -> event.getSource().addSessionInitListener(
+                sessionInitEvent -> sessionInitEvent.getSession().setErrorHandler(errorHandler));
     }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
 }
