@@ -4,12 +4,12 @@ import com.example.application.greeting.domain.Greeting;
 import com.example.application.greeting.domain.GreetingRepository;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-import com.vaadin.hilla.Nonnull;
 import com.vaadin.hilla.crud.CountService;
 import com.vaadin.hilla.crud.JpaFilterConverter;
 import com.vaadin.hilla.crud.ListService;
 import com.vaadin.hilla.crud.filter.Filter;
 import jakarta.validation.Validator;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -43,9 +43,8 @@ public class GreetingService implements ListService<Greeting>, CountService {
         dummyRepository.saveAndFlush(greeting);
     }
 
-    // TODO Remove Hilla annotations once support for JSpecify is available
     @Override
-    public @Nonnull List<Greeting> list(Pageable pageable, @Nullable Filter filter) {
+    public @NonNull List<Greeting> list(Pageable pageable, @Nullable Filter filter) {
         return dummyRepository.findAll(JpaFilterConverter.toSpec(filter, Greeting.class), pageable).toList();
     }
 

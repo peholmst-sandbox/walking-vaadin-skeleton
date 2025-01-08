@@ -14,8 +14,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <vaadin.version>24.7.0.alpha1</vaadin.version>
-        <jspecify.version>1.0.0</jspecify.version>
+        <vaadin.version>24.7.0.alpha2</vaadin.version>
     </properties>
 
     <parent>
@@ -73,14 +72,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <!-- Utilities -->
-        <dependency>
-            <!-- TODO: Eventually this dependency will become transitive, through Vaadin or Spring -->
-            <groupId>org.jspecify</groupId>
-            <artifactId>jspecify</artifactId>
-            <version>${jspecify.version}</version>
         </dependency>
 
         <!-- Testing -->
