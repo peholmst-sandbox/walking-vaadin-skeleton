@@ -21,14 +21,11 @@ then be the starting point for _all_ tutorials and how-to guides in the document
 - Empty theme and Lumo utility classes
 - Example service that can be called from both Flow and Hilla
 - Example view with both Flow and Hilla implementations
+- Example integration test for the service
+- Example integration test for the Flow view
+- Code formatter for the Maven project
+- Native image build
 - No security
     - There will be a how-to guide explaining how to add security (login, logout, authorization, audit logging)
 - No internationalization
     - There will be a how-to guide explaining how to add internationalization
-
-## Planned Features
-
-- Example integration test for the service
-- Example tests for the views
-- Code formatter for the Maven project
-- Native image build
