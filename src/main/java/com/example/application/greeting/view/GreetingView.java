@@ -29,7 +29,10 @@ public class GreetingView extends Main {
 
     private final DataProvider<Greeting, Void> dataProvider;
 
-    private final TextField name;
+    final TextField name;
+    final Button greetBtn;
+    final Button refreshBtn;
+    final Grid<Greeting> greetingGrid;
 
     public GreetingView(GreetingService greetingService, Clock clock) {
         this.greetingService = greetingService;
@@ -41,13 +44,13 @@ public class GreetingView extends Main {
         name.setPlaceholder("What is your name?");
         name.setMaxLength(Greeting.GREETING_MAX_LENGTH);
 
-        var greetBtn = new Button("Greet", event -> greet());
-        var refreshBtn = new Button("Refresh", event -> refresh());
+        greetBtn = new Button("Greet", event -> greet());
+        refreshBtn = new Button("Refresh", event -> refresh());
 
         var dateFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withZone(clock.getZone())
                 .withLocale(getLocale());
 
-        var greetingGrid = new Grid<>(dataProvider);
+        greetingGrid = new Grid<>(dataProvider);
         greetingGrid.addColumn(Greeting::getGreeting).setHeader("Greeting");
         greetingGrid.addColumn(greeting -> dateFormatter.format(greeting.getGreetingDate())).setHeader("Date");
         greetingGrid.setSizeFull();
