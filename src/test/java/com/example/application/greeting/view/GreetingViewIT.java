@@ -6,6 +6,7 @@ import com.example.application.greeting.service.GreetingService;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.testbench.unit.SpringUIUnitTest;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,6 +30,11 @@ class GreetingViewIT extends SpringUIUnitTest {
 
     @Autowired
     GreetingRepository greetingRepository;
+
+    @BeforeAll
+    static void setUp() {
+        Locale.setDefault(Locale.US); // Needed for date time formatting
+    }
 
     @AfterEach
     void cleanUp() {
@@ -44,7 +51,7 @@ class GreetingViewIT extends SpringUIUnitTest {
         assertThat(test(notification).getText()).isEqualTo("Greeting added");
 
         assertThat(test(view.greetingGrid).getCellText(0, 0)).isEqualTo("Hello Joe Cool!");
-        assertThat(test(view.greetingGrid).getCellText(0, 1)).isEqualTo("9 Jan 2025, 13.45.55");
+        assertThat(test(view.greetingGrid).getCellText(0, 1)).isEqualToNormalizingWhitespace("Jan 9, 2025, 1:45:55 PM");
         assertThat(view.name.getValue()).isEmpty();
     }
 
@@ -58,7 +65,7 @@ class GreetingViewIT extends SpringUIUnitTest {
         test(view.refreshBtn).click();
 
         assertThat(test(view.greetingGrid).getCellText(0, 0)).isEqualTo("Hello Alice!");
-        assertThat(test(view.greetingGrid).getCellText(0, 1)).isEqualTo("9 Jan 2025, 13.45.55");
+        assertThat(test(view.greetingGrid).getCellText(0, 1)).isEqualToNormalizingWhitespace("Jan 9, 2025, 1:45:55 PM");
     }
 
     static class TestViewConfig {
@@ -66,7 +73,7 @@ class GreetingViewIT extends SpringUIUnitTest {
         @Bean
         @Primary
         Clock fixedClock() {
-            return Clock.fixed(Instant.ofEpochSecond(1736430355), ZoneId.of("UTC")); // 9 Jan 2025, 13.45.55 UTC
+            return Clock.fixed(Instant.ofEpochSecond(1736430355), ZoneId.of("UTC")); // Jan 9, 2025, 1:45:55 PM UTC
         }
 
     }
