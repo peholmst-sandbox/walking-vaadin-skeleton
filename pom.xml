@@ -14,7 +14,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <vaadin.version>24.7-SNAPSHOT</vaadin.version> <!-- TODO Replace with a release -->
+        <vaadin.version>24.7.0.alpha3</vaadin.version> <!-- TODO Replace with a release -->
     </properties>
 
     <parent>
