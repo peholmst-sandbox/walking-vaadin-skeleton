@@ -26,7 +26,8 @@ then be the starting point for _all_ tutorials and meat-on-the-bones-guides (i.e
 - Example integration test for the service
 - Example integration test for the Flow view
 - Code formatter for the Maven project
-- Native image build
+- No native image build
+    - There will be a meat-on-the-bones-guide explaining how to build a native image
 - No security
     - There will be a meat-on-the-bones-guide explaining how to add security (login, logout, authorization, audit logging)
 - No internationalization
@@ -42,8 +43,6 @@ then be the starting point for _all_ tutorials and meat-on-the-bones-guides (i.e
   intend to write your UI in React, the generated skeleton should contain one in React.
   - Should it be possible to customize the generated skeleton to use either a Flow or a React layout?
   - If so, should there still be a Flow view with a React layout, and a React view with a Flow layout?
-- The native image build could be removed and moved to a meat-on-the-bones-guide that also explains the exceptions and 
-  pitfalls you may encounter when doing a native build of a Spring app.
 - Can we get rid of the code formatter Maven plugin?
 - Can we get rid of the Maven wrapper?
 - What should the generated `.gitignore` file look like?
