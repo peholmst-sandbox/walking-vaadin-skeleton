@@ -1,6 +1,6 @@
 package com.example.application.greeting.view;
 
-import com.example.application.base.components.ViewToolbar;
+import com.example.application.base.component.ViewToolbar;
 import com.example.application.greeting.domain.Greeting;
 import com.example.application.greeting.service.GreetingService;
 import com.vaadin.flow.component.Key;
