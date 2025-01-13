@@ -1,6 +1,6 @@
 package com.example.application.greeting.domain;
 
-import com.example.application.base.domain.AbstractLockableEntity;
+import com.example.application.base.domain.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -10,7 +10,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "dummy")
-public class Greeting extends AbstractLockableEntity<Long> {
+public class Greeting extends AbstractEntity<Long> {
 
     public static final int GREETING_MAX_LENGTH = 255;
 
