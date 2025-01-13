@@ -64,8 +64,7 @@ public class GreetingView extends Main {
         addClassNames(LumoUtility.BoxSizing.BORDER, LumoUtility.Display.FLEX, LumoUtility.FlexDirection.COLUMN,
                 LumoUtility.Padding.MEDIUM, LumoUtility.Gap.SMALL);
 
-        add(new ViewToolbar("Greetings from Flow").addToLeftActionArea(name, greetBtn)
-                .addToRightActionArea(refreshBtn));
+        add(new ViewToolbar("Greetings from Flow", ViewToolbar.group(name, greetBtn), refreshBtn));
         add(greetingGrid);
     }
 

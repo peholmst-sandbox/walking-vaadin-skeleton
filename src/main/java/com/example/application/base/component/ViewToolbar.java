@@ -10,49 +10,32 @@ import com.vaadin.flow.theme.lumo.LumoUtility.*;
 
 public final class ViewToolbar extends Composite<Header> {
 
-    private final H1 title;
-    private final Div leftActionArea;
-    private final Div rightActionArea;
-
-    public ViewToolbar() {
-        this("");
-    }
-
-    public ViewToolbar(String title) {
+    public ViewToolbar(String viewTitle, Component... components) {
         addClassNames(Display.FLEX, FlexDirection.COLUMN, JustifyContent.BETWEEN, AlignItems.STRETCH, Gap.MEDIUM,
                 FlexDirection.Breakpoint.Medium.ROW, AlignItems.Breakpoint.Medium.CENTER);
-
-        this.title = new H1(title);
-        this.title.addClassNames(FontSize.XLARGE, Margin.NONE, FontWeight.LIGHT);
-
-        leftActionArea = new Div();
-        leftActionArea.addClassNames(Display.FLEX, FlexDirection.COLUMN, JustifyContent.START, AlignItems.STRETCH,
-                Flex.GROW, Gap.SMALL, FlexDirection.Breakpoint.Medium.ROW);
-
-        rightActionArea = new Div();
-        rightActionArea.addClassNames(Display.FLEX, FlexDirection.COLUMN, JustifyContent.END, AlignItems.STRETCH,
-                Gap.SMALL, FlexDirection.Breakpoint.Medium.ROW);
 
         var drawerToggle = new DrawerToggle();
         drawerToggle.addClassNames(Margin.NONE);
 
-        var toggleAndTitle = new Div(drawerToggle, this.title);
+        var title = new H1(viewTitle);
+        title.addClassNames(FontSize.XLARGE, Margin.NONE, FontWeight.LIGHT);
+
+        var toggleAndTitle = new Div(drawerToggle, title);
         toggleAndTitle.addClassNames(Display.FLEX, AlignItems.CENTER);
+        getContent().add(toggleAndTitle);
 
-        getContent().add(toggleAndTitle, leftActionArea, rightActionArea);
+        if (components.length > 0) {
+            var actions = new Div(components);
+            actions.addClassNames(Display.FLEX, FlexDirection.COLUMN, JustifyContent.BETWEEN, Flex.GROW, Gap.SMALL,
+                    FlexDirection.Breakpoint.Medium.ROW);
+            getContent().add(actions);
+        }
     }
 
-    public void setTitle(String title) {
-        this.title.setText(title);
-    }
-
-    public ViewToolbar addToLeftActionArea(Component... components) {
-        leftActionArea.add(components);
-        return this;
-    }
-
-    public ViewToolbar addToRightActionArea(Component... components) {
-        rightActionArea.add(components);
-        return this;
+    public static Component group(Component... components) {
+        var group = new Div(components);
+        group.addClassNames(Display.FLEX, FlexDirection.COLUMN, AlignItems.STRETCH, Gap.SMALL,
+                FlexDirection.Breakpoint.Medium.ROW, AlignItems.Breakpoint.Medium.CENTER);
+        return group;
     }
 }
