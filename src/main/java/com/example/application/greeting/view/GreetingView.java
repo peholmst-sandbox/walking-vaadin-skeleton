@@ -3,7 +3,9 @@ package com.example.application.greeting.view;
 import com.example.application.base.components.ViewToolbar;
 import com.example.application.greeting.domain.Greeting;
 import com.example.application.greeting.service.GreetingService;
+import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.notification.Notification;
@@ -22,7 +24,7 @@ import java.time.format.FormatStyle;
 
 @Route("")
 @PageTitle("Greetings from Flow")
-@Menu(order = 0, icon = "vaadin:cubes")
+@Menu(order = 0, icon = "vaadin:handshake")
 public class GreetingView extends Main {
 
     private final GreetingService greetingService;
@@ -43,8 +45,11 @@ public class GreetingView extends Main {
         name = new TextField();
         name.setPlaceholder("What is your name?");
         name.setMaxLength(Greeting.GREETING_MAX_LENGTH);
+        name.addKeyPressListener(Key.ENTER, event -> greet());
 
         greetBtn = new Button("Greet", event -> greet());
+        greetBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
         refreshBtn = new Button("Refresh", event -> refresh());
 
         var dateFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withZone(clock.getZone())
@@ -59,7 +64,8 @@ public class GreetingView extends Main {
         addClassNames(LumoUtility.BoxSizing.BORDER, LumoUtility.Display.FLEX, LumoUtility.FlexDirection.COLUMN,
                 LumoUtility.Padding.MEDIUM, LumoUtility.Gap.SMALL);
 
-        add(new ViewToolbar("Greetings from Flow", name, greetBtn, refreshBtn));
+        add(new ViewToolbar("Greetings from Flow").addToLeftActionArea(name, greetBtn)
+                .addToRightActionArea(refreshBtn));
         add(greetingGrid);
     }
 
