@@ -11,6 +11,7 @@ export const config: ViewConfig = {
   menu: {
     icon: 'vaadin:cube',
     order: 1,
+    title: "Greetings (Hilla)"
   },
 };
 
@@ -47,7 +48,7 @@ export default function GreetingView() {
             value={name.value}
             onValueChanged={(evt) => (name.value = evt.detail.value)}
           />
-          <Button onClick={greet}>Greet</Button>
+          <Button onClick={greet} theme="primary">Greet</Button>
         </div>
         <div className="flex flex-col content-end items-stretch gap-small md:flex-row">
           <Button onClick={dataProvider.refresh}>Refresh</Button>
