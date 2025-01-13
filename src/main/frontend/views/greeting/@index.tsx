@@ -1,5 +1,5 @@
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
+import { Button, DrawerToggle, Grid, GridColumn, TextField } from '@vaadin/react-components';
 import { Notification } from '@vaadin/react-components/Notification';
 import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { GreetingService } from 'Frontend/generated/endpoints';
@@ -35,15 +35,23 @@ export default function GreetingView() {
   };
   return (
     <main className="w-full h-full flex flex-col box-border gap-s p-m">
-      <header className="flex gap-s">
-        <TextField
-          placeholder="What is your name?"
-          maxlength={255}
-          value={name.value}
-          onValueChanged={(evt) => (name.value = evt.detail.value)}
-        />
-        <Button onClick={greet}>Greet</Button>
-        <Button onClick={dataProvider.refresh}>Refresh</Button>
+      <header className="flex flex-col justify-between items-stretch gap-m md:flex-row md:items-center">
+        <div className="flex items-center">
+          <DrawerToggle className="m-0" />
+          <h1 className="text-xl m-0 font-light">Greetings from Hilla</h1>
+        </div>
+        <div className="flex flex-col content-start items-stretch flex-grow gap-s md:flex-row">
+          <TextField
+            placeholder="What is your name?"
+            maxlength={255}
+            value={name.value}
+            onValueChanged={(evt) => (name.value = evt.detail.value)}
+          />
+          <Button onClick={greet}>Greet</Button>
+        </div>
+        <div className="flex flex-col content-end items-stretch gap-small md:flex-row">
+          <Button onClick={dataProvider.refresh}>Refresh</Button>
+        </div>
       </header>
       <Grid dataProvider={dataProvider.dataProvider}>
         <GridColumn path="greeting" />
