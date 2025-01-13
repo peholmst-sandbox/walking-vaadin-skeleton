@@ -7,6 +7,8 @@ and they are connected in the same way as they would be in a real-world applicat
 It should be possible to generate a walking skeleton from [Vaadin Start](https://start.vaadin.com). This skeleton will
 then be the starting point for _all_ tutorials and how-to guides in the documentation.
 
+*Note, that the generated skeleton will not contain a readme file at all.*
+
 ## Current Features
 
 - Feature based package organization
