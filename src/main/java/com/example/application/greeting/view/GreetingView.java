@@ -1,10 +1,10 @@
 package com.example.application.greeting.view;
 
+import com.example.application.base.components.ViewToolbar;
 import com.example.application.greeting.domain.Greeting;
 import com.example.application.greeting.service.GreetingService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -56,14 +56,10 @@ public class GreetingView extends Main {
         greetingGrid.setSizeFull();
 
         setSizeFull();
-        setAriaLabelledBy("view-title");
         addClassNames(LumoUtility.BoxSizing.BORDER, LumoUtility.Display.FLEX, LumoUtility.FlexDirection.COLUMN,
                 LumoUtility.Padding.MEDIUM, LumoUtility.Gap.SMALL);
 
-        var toolbar = new Header(name, greetBtn, refreshBtn);
-        toolbar.addClassNames(LumoUtility.Display.FLEX, LumoUtility.Gap.SMALL);
-
-        add(toolbar);
+        add(new ViewToolbar("Greetings from Flow", name, greetBtn, refreshBtn));
         add(greetingGrid);
     }
 
