@@ -1,5 +1,5 @@
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, DrawerToggle, Grid, GridColumn, TextField } from '@vaadin/react-components';
+import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
 import { Notification } from '@vaadin/react-components/Notification';
 import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { GreetingService } from 'Frontend/generated/endpoints';
