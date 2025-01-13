@@ -1,11 +1,15 @@
 import { PropsWithChildren } from 'react';
 import { DrawerToggle } from '@vaadin/react-components';
 
+export function Group(props: PropsWithChildren) {
+  return <div className="flex flex-col items-stretch gap-s md:flex-row md:items-center">{props.children}</div>;
+}
+
 export type ViewToolbarProps = {
   title: string;
 } & PropsWithChildren;
 
-export default function ViewToolbar(props: ViewToolbarProps) {
+export function ViewToolbar(props: ViewToolbarProps) {
   return (
     <header className="flex flex-col justify-between items-stretch gap-m md:flex-row md:items-center">
       <div className="flex items-center">

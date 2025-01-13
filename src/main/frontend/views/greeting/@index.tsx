@@ -5,8 +5,7 @@ import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { GreetingService } from 'Frontend/generated/endpoints';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
-import ViewToolbar from 'Frontend/components/ViewToolbar';
-import ToolbarComponentGroup from 'Frontend/components/ToolbarComponentGroup';
+import { ViewToolbar, Group } from 'Frontend/components/ViewToolbar';
 
 export const config: ViewConfig = {
   title: 'Greetings from Hilla',
@@ -39,7 +38,7 @@ export default function GreetingView() {
   return (
     <main className="w-full h-full flex flex-col box-border gap-s p-m">
       <ViewToolbar title="Greetings from Hilla">
-        <ToolbarComponentGroup>
+        <Group>
           <TextField
             placeholder="What is your name?"
             maxlength={255}
@@ -49,7 +48,7 @@ export default function GreetingView() {
           <Button onClick={greet} theme="primary">
             Greet
           </Button>
-        </ToolbarComponentGroup>
+        </Group>
         <Button onClick={dataProvider.refresh}>Refresh</Button>
       </ViewToolbar>
       <Grid dataProvider={dataProvider.dataProvider}>
