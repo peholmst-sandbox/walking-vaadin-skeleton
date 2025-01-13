@@ -116,7 +116,7 @@
                         </excludes>
                         <prettier>
                             <prettierVersion>3.3.3</prettierVersion>
-                            <configFile>.prettierrc.json</configFile>
+                            <configFile>${project.basedir}/.prettierrc.json</configFile>
                         </prettier>
                     </typescript>
                 </configuration>
