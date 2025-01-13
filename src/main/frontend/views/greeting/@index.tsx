@@ -5,13 +5,15 @@ import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { GreetingService } from 'Frontend/generated/endpoints';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
+import ViewToolbar from 'Frontend/components/ViewToolbar';
+import ToolbarComponentGroup from 'Frontend/components/ToolbarComponentGroup';
 
 export const config: ViewConfig = {
   title: 'Greetings from Hilla',
   menu: {
     icon: 'vaadin:cube',
     order: 1,
-    title: "Greetings (Hilla)"
+    title: 'Greetings (Hilla)',
   },
 };
 
@@ -36,24 +38,20 @@ export default function GreetingView() {
   };
   return (
     <main className="w-full h-full flex flex-col box-border gap-s p-m">
-      <header className="flex flex-col justify-between items-stretch gap-m md:flex-row md:items-center">
-        <div className="flex items-center">
-          <DrawerToggle className="m-0" />
-          <h1 className="text-xl m-0 font-light">Greetings from Hilla</h1>
-        </div>
-        <div className="flex flex-col content-start items-stretch flex-grow gap-s md:flex-row">
+      <ViewToolbar title="Greetings from Hilla">
+        <ToolbarComponentGroup>
           <TextField
             placeholder="What is your name?"
             maxlength={255}
             value={name.value}
             onValueChanged={(evt) => (name.value = evt.detail.value)}
           />
-          <Button onClick={greet} theme="primary">Greet</Button>
-        </div>
-        <div className="flex flex-col content-end items-stretch gap-small md:flex-row">
-          <Button onClick={dataProvider.refresh}>Refresh</Button>
-        </div>
-      </header>
+          <Button onClick={greet} theme="primary">
+            Greet
+          </Button>
+        </ToolbarComponentGroup>
+        <Button onClick={dataProvider.refresh}>Refresh</Button>
+      </ViewToolbar>
       <Grid dataProvider={dataProvider.dataProvider}>
         <GridColumn path="greeting" />
         <GridColumn path="greetingDate" header="Date">
