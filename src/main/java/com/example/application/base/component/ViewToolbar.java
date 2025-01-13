@@ -27,11 +27,11 @@ public final class ViewToolbar extends Composite<Header> {
 
         leftActionArea = new Div();
         leftActionArea.addClassNames(Display.FLEX, FlexDirection.COLUMN, JustifyContent.START, AlignItems.STRETCH,
-                Flex.GROW, Gap.XSMALL, FlexDirection.Breakpoint.Medium.ROW);
+                Flex.GROW, Gap.SMALL, FlexDirection.Breakpoint.Medium.ROW);
 
         rightActionArea = new Div();
         rightActionArea.addClassNames(Display.FLEX, FlexDirection.COLUMN, JustifyContent.END, AlignItems.STRETCH,
-                Gap.XSMALL, FlexDirection.Breakpoint.Medium.ROW);
+                Gap.SMALL, FlexDirection.Breakpoint.Medium.ROW);
 
         var drawerToggle = new DrawerToggle();
         drawerToggle.addClassNames(Margin.NONE);
