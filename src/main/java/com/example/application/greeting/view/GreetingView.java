@@ -24,7 +24,7 @@ import java.time.format.FormatStyle;
 
 @Route("")
 @PageTitle("Greetings from Flow")
-@Menu(order = 0, icon = "vaadin:handshake")
+@Menu(order = 0, icon = "vaadin:handshake", title = "Greetings (Flow)")
 public class GreetingView extends Main {
 
     private final GreetingService greetingService;
