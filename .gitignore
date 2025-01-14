@@ -8,15 +8,9 @@
 *.iml
 .DS_Store
 
-# The following files are generated/updated by vaadin-maven-plugin
-node_modules/
-src/main/frontend/generated/
-vite.generated.ts
-
-# The following lines should not be included in the .gitignore of a generated skeleton.
-package.json
-package-lock.json
-tsconfig.json
-types.d.ts
-vite.config.ts
-src/main/bundles/
+/walking-skeleton/package.json
+/walking-skeleton/package-lock.json
+/walking-skeleton/tsconfig.json
+/walking-skeleton/types.d.ts
+/walking-skeleton/vite.config.ts
+/walking-skeleton/src/main/bundles/
