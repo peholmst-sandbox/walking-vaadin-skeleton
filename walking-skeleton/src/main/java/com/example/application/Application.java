@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import java.time.Clock;
 
 @SpringBootApplication
-@Theme("walking-skeleton")
+@Theme("default")
 public class Application implements AppShellConfigurator {
 
     @Bean
