@@ -3,15 +3,11 @@ COPY . /app/
 
 # Assemble the skeletons
 WORKDIR /app/assembly
-RUN \
- --mount=type=cache,target=/root/.m2 \
- mvn -C clean package
+RUN mvn -C clean package
 
 # Build the generator
 WORKDIR /app/walking-skeleton-generator
-RUN \
- --mount=type=cache,target=/root/.m2 \
- mvn -C clean package -Pproduction
+RUN mvn -C clean package -Pproduction
 RUN mv target/*.jar target/generator.jar
 
 # Generate config files
@@ -27,5 +23,5 @@ COPY --from=build /app/assembly/target/walking-skeleton-react.zip /
 COPY --from=build /app/walking-skeleton-generator/target/generator.jar /
 COPY --from=build /app/application.properties /
 
-ENTRYPOINT ["java", "-jar", "/generator.jar"]
+ENTRYPOINT ["java", "-Xmx256m", "-jar", "/generator.jar"]
 EXPOSE 8081
