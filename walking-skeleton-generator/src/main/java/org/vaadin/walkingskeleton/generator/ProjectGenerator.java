@@ -28,11 +28,11 @@ class ProjectGenerator {
 
     private void updatePomFile(Path projectDirectory, ProjectConfiguration projectConfiguration) throws IOException {
         var pomFile = projectDirectory.resolve("walking-skeleton/pom.xml");
-        FileUtils.replaceInFile(pomFile, Map.of("com.example.application", projectConfiguration.groupId(), "walking-skeleton", projectConfiguration.artifactId()));
+        FileUtils.replaceInFile(pomFile, Map.of("com.example.application", projectConfiguration.groupId().toString(), "walking-skeleton", projectConfiguration.artifactId().toString()));
     }
 
     private void updateBasePackage(Path projectDirectory, ProjectConfiguration projectConfiguration) throws IOException {
-        if (projectConfiguration.basePackage().equals("com.example.application")) {
+        if (projectConfiguration.basePackage().toString().equals("com.example.application")) {
             return; // No need to change the base package
         }
 
@@ -42,16 +42,16 @@ class ProjectGenerator {
         var testJava = projectDirectory.resolve("walking-skeleton/src/test/java");
         moveJavaClasses(testJava, projectConfiguration.basePackage());
 
-        FileUtils.replaceInFiles(projectDirectory, FileUtils.nameEndsWith(".java", ".properties"), Map.of("com.example.application", projectConfiguration.basePackage()));
+        FileUtils.replaceInFiles(projectDirectory, FileUtils.nameEndsWith(".java", ".properties"), Map.of("com.example.application", projectConfiguration.basePackage().toString()));
     }
 
     private void renameRootDirectory(Path projectDirectory, ProjectConfiguration projectConfiguration) throws IOException {
         var oldRoot = projectDirectory.resolve("walking-skeleton");
-        var newRoot = projectDirectory.resolve(projectConfiguration.artifactId());
+        var newRoot = projectDirectory.resolve(projectConfiguration.artifactId().toString());
         Files.move(oldRoot, newRoot, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
     }
 
-    private void moveJavaClasses(Path javaDirectory, String basePackage) throws IOException {
+    private void moveJavaClasses(Path javaDirectory, PackageName basePackage) throws IOException {
         var newPackage = createBasePackageDirectories(javaDirectory, basePackage);
         var oldPackage = javaDirectory.resolve("com/example/application");
         Files.move(oldPackage, newPackage, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
@@ -63,8 +63,8 @@ class ProjectGenerator {
         }
     }
 
-    private Path createBasePackageDirectories(Path destinationDir, String basePackage) throws IOException {
-        var path = destinationDir.resolve(basePackage.replace(".", "/"));
+    private Path createBasePackageDirectories(Path destinationDir, PackageName basePackage) throws IOException {
+        var path = destinationDir.resolve(basePackage.toString().replace(".", "/"));
         Files.createDirectories(path);
         return path;
     }
@@ -72,7 +72,7 @@ class ProjectGenerator {
     Path generateProjectArchive(ProjectConfiguration projectConfiguration) throws IOException {
         var directory = generateProjectDirectory(projectConfiguration);
         try {
-            var zipFile = Files.createTempFile(projectConfiguration.artifactId(), ".zip");
+            var zipFile = Files.createTempFile(projectConfiguration.artifactId().toString(), ".zip");
             ZipUtils.createZipFromDirectory(directory, zipFile, file -> file.getFileName().toString().equals("mvnw"));
             return zipFile;
         } finally {
