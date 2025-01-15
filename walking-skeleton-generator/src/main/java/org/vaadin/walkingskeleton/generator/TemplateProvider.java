@@ -19,6 +19,17 @@ class TemplateProvider {
                             @Value("${walking-skeleton.templates.react.url}") URL reactTemplate) {
         this.flowTemplate = flowTemplate;
         this.reactTemplate = reactTemplate;
+
+        verifyValidURL(flowTemplate);
+        verifyValidURL(reactTemplate);
+    }
+
+    private void verifyValidURL(URL url) {
+        try {
+            url.openStream().close();
+        } catch (IOException ex) {
+            throw new IllegalStateException("Cannot access " + url);
+        }
     }
 
     Path loadTemplateIntoTemporaryDirectory(UIFramework uiFramework) throws IOException {
