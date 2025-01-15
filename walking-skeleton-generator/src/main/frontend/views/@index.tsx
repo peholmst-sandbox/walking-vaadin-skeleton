@@ -1,5 +1,5 @@
 import { Button, Notification, RadioButton, RadioGroup, TextField } from '@vaadin/react-components';
-import { useSignal, useSignalEffect } from '@vaadin/hilla-react-signals';
+import { useSignal } from '@vaadin/hilla-react-signals';
 
 type UiFramework = 'FLOW' | 'REACT'
 
@@ -13,28 +13,26 @@ const buildUrl = (path: string): string => {
   return `${contextPath}/${cleanPath}`;
 };
 
+const DEFAULT_ARTIFACT_ID = 'my-application';
+const DEFAULT_GROUP_ID = 'com.example.application';
+const DEFAULT_BASE_PACKAGE = 'com.example.application';
+
 export default function ProjectGeneratorView() {
   const groupId = useSignal('');
   const artifactId = useSignal('');
   const basePackage = useSignal('');
   const uiFramework = useSignal<UiFramework>('FLOW');
   const error = useSignal(false);
-  const requiredDataMissing = useSignal(true);
 
   // TODO Should also validate the input of the fields
-  useSignalEffect(() => {
-    requiredDataMissing.value = groupId.value.length == 0
-      || artifactId.value.length == 0
-      || basePackage.value.length == 0;
-  });
 
   const downloadProject = async () => {
     error.value = false;
 
     const projectConfiguration = {
-      artifactId: artifactId.value,
-      groupId: groupId.value,
-      basePackage: basePackage.value,
+      artifactId: artifactId.value || DEFAULT_ARTIFACT_ID,
+      groupId: groupId.value || DEFAULT_GROUP_ID,
+      basePackage: basePackage.value || DEFAULT_BASE_PACKAGE,
       uiFramework: uiFramework.value
     };
 
@@ -74,13 +72,13 @@ export default function ProjectGeneratorView() {
           Please fill in the following fields to create your new Vaadin project:
         </p>
         <div className="flex flex-col">
-          <TextField label="Maven Project Group ID" placeholder="Example: com.example.application"
+          <TextField label="Maven Project Group ID" placeholder={DEFAULT_GROUP_ID}
                      value={groupId.value}
                      onValueChanged={evt => groupId.value = evt.detail.value}></TextField>
-          <TextField label="Maven Project Artifact ID" placeholder="Example: my-project"
+          <TextField label="Maven Project Artifact ID" placeholder={DEFAULT_ARTIFACT_ID}
                      value={artifactId.value}
                      onValueChanged={evt => artifactId.value = evt.detail.value}></TextField>
-          <TextField label="Java Base Package" placeholder="Example: com.example.application"
+          <TextField label="Java Base Package" placeholder={DEFAULT_BASE_PACKAGE}
                      value={basePackage.value}
                      onValueChanged={evt => basePackage.value = evt.detail.value}></TextField>
           <RadioGroup label="User Interface Framework" value={uiFramework.value}
@@ -93,8 +91,7 @@ export default function ProjectGeneratorView() {
             the command: <code>./mvnw
             spring-boot:run</code>
           </div>
-          <Button disabled={requiredDataMissing.value} theme="primary" onClick={downloadProject}>Download
-            Project</Button>
+          <Button theme="primary" onClick={downloadProject}>Download Project</Button>
           <Notification opened={error.value} theme="error" position="top-center" onClosed={evt => error.value = false}>
             Whops, this did not go as planned. Please try again later.
           </Notification>
