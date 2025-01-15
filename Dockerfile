@@ -13,8 +13,8 @@ RUN mv target/*.jar target/generator.jar
 # Generate config files
 RUN echo "walking-skeleton.templates.flow.url=file:/walking-skeleton-flow.zip" >> /app/application.properties
 RUN echo "walking-skeleton.templates.react.url=file:/walking-skeleton-react.zip" >> /app/application.properties
+RUN echo "walking-skeleton.generator.context-path=/walking-skeleton-generator" >> /app/application.properties
 RUN echo "server.port=8080" >> /app/application.properties
-RUN echo "server.servlet.context-path=/walking-skeleton-generator" >> /app/application.properties
 
 # Create the run image
 FROM eclipse-temurin:21-alpine

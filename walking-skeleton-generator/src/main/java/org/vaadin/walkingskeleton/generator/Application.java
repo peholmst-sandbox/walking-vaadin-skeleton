@@ -3,6 +3,7 @@ package org.vaadin.walkingskeleton.generator;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.server.AppShellSettings;
 import com.vaadin.flow.theme.Theme;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,8 +14,9 @@ public class Application implements AppShellConfigurator {
 
     private final String contextPath;
 
-    public Application(@Value("${server.servlet.context-path:}") String contextPath) {
+    public Application(@Value("${walking-skeleton.generator.context-path:}") String contextPath) {
         this.contextPath = contextPath;
+        LoggerFactory.getLogger(Application.class).info("Using generator context path '{}'", contextPath);
     }
 
     @Override
