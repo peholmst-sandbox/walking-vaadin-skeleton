@@ -68,8 +68,11 @@ export default function ProjectGeneratorView() {
 
   return (
     <div className="w-full h-full flex justify-center items-center bg-contrast-10">
-      <div className="bg-base shadow-m p-l rounded-l">
+      <div className="bg-base shadow-m p-l rounded-l" style={{ 'max-width': '550px' }}>
         <h1>Walking Skeleton Generator</h1>
+        <p>
+          Please fill in the following fields to create your new Vaadin project:
+        </p>
         <div className="flex flex-col">
           <TextField label="Maven Project Group ID" placeholder="Example: com.example.application"
                      value={groupId.value}
@@ -85,6 +88,11 @@ export default function ProjectGeneratorView() {
             <RadioButton value="FLOW" label="Flow" />
             <RadioButton value="REACT" label="React" />
           </RadioGroup>
+          <div className="text-secondary text-s my-l">
+            The generated project is configured to use <b>Java 21</b>. Unzip it, and start the application by running
+            the command: <code>./mvnw
+            spring-boot:run</code>
+          </div>
           <Button disabled={requiredDataMissing.value} theme="primary" onClick={downloadProject}>Download
             Project</Button>
           <Notification opened={error.value} theme="error" position="top-center" onClosed={evt => error.value = false}>
