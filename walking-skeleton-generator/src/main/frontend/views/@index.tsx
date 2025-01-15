@@ -83,7 +83,7 @@ export default function ProjectGeneratorView() {
                      onValueChanged={evt => basePackage.value = evt.detail.value}></TextField>
           <RadioGroup label="User Interface Framework" value={uiFramework.value}
                       onValueChanged={evt => uiFramework.value = evt.detail.value as UiFramework}>
-            <RadioButton value="FLOW" label="Flow" />
+            <RadioButton value="FLOW" label="Vaadin Flow" />
             <RadioButton value="REACT" label="React" />
           </RadioGroup>
           <div className="text-secondary text-s my-l">
