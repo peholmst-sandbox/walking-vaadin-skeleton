@@ -13,7 +13,7 @@ public class Application implements AppShellConfigurator {
 
     private final String contextPath;
 
-    public Application(@Value("${server.servlet.context-path}") String contextPath) {
+    public Application(@Value("${server.servlet.context-path:}") String contextPath) {
         this.contextPath = contextPath;
     }
 
