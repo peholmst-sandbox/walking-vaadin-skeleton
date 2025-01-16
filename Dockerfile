@@ -3,11 +3,15 @@ COPY . /app/
 
 # Assemble the skeletons
 WORKDIR /app/assembly
-RUN mvn -C clean package
+RUN \
+ --mount=type=cache,target=/root/.m2 \
+ mvn -C clean package
 
 # Build the generator
 WORKDIR /app/walking-skeleton-generator
-RUN mvn -C clean package -Pproduction
+RUN \
+ --mount=type=cache,target=/root/.m2 \
+ mvn -C clean package -Pproduction
 RUN mv target/*.jar target/generator.jar
 
 # Generate config files
