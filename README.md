@@ -22,8 +22,8 @@ then be the starting point for _all_ tutorials and meat-on-the-bones-guides (i.e
 - Example service that can be called from both Flow and Hilla
 - Example view with both Flow and Hilla implementations
 - Example integration test for the service
-- Example integration test for the Flow view
 - Code formatter for the Maven project
+- ArchUnit tests for the architecture
 - No native image build
     - There will be a meat-on-the-bones-guide explaining how to build a native image
 - No security
@@ -35,6 +35,7 @@ then be the starting point for _all_ tutorials and meat-on-the-bones-guides (i.e
 
 - Integration test for the React view 
 - Updating the page title in the React layout
+- TestBench test (because it requires a commercial license)
 
 ## Open Questions
 
