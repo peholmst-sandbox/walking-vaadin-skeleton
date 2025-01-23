@@ -17,26 +17,30 @@ public abstract class AbstractEntity<ID> {
     }
 
     @Override
-    public int hashCode() {
-        var id = getId();
-        return id == null ? super.hashCode() : id.hashCode();
+    public final int hashCode() {
+        // Hashcode should never change during the lifetime of an object. Because of
+        // this we can't use getId() to calculate the hashcode. Unless you have sets
+        // with lots of entities in them, returning the same hashcode should not be a
+        // problem.
+        return ProxyUtils.getUserClass(getClass()).hashCode();
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == null) {
             return false;
         } else if (obj == this) {
             return true;
-        } else if (!getClass().equals(ProxyUtils.getUserClass(obj))) {
+        }
+
+        var thisUserClass = ProxyUtils.getUserClass(getClass());
+        var otherUserClass = ProxyUtils.getUserClass(obj);
+        if (thisUserClass != otherUserClass) {
             return false;
         }
+
         var id = getId();
-        if (id == null) {
-            return false;
-        } else {
-            return id.equals(((AbstractEntity<?>) obj).getId());
-        }
+        return id != null && id.equals(((AbstractEntity<?>) obj).getId());
     }
 
 }
