@@ -1,6 +1,8 @@
 package com.example.application.base.domain;
 
+//#if ui.framework == "react"
 import com.fasterxml.jackson.annotation.JsonIgnore;
+//#endif
 import jakarta.persistence.MappedSuperclass;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.util.ProxyUtils;
@@ -8,7 +10,9 @@ import org.springframework.data.util.ProxyUtils;
 @MappedSuperclass
 public abstract class AbstractEntity<ID> {
 
-    @JsonIgnore // Hilla should not generate an unknown ID in the AbstractEntityModel.
+    //#if ui.framework == "react"
+    @JsonIgnore
+    //#endif
     public abstract @Nullable ID getId();
 
     @Override
@@ -17,7 +21,7 @@ public abstract class AbstractEntity<ID> {
     }
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         // Hashcode should never change during the lifetime of an object. Because of
         // this we can't use getId() to calculate the hashcode. Unless you have sets
         // with lots of entities in them, returning the same hashcode should not be a
@@ -26,7 +30,7 @@ public abstract class AbstractEntity<ID> {
     }
 
     @Override
-    public final boolean equals(Object obj) {
+    public boolean equals(Object obj) {
         if (obj == null) {
             return false;
         } else if (obj == this) {

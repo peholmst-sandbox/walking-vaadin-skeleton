@@ -7,6 +7,14 @@
     </formats>
     <fileSets>
         <fileSet>
+            <outputDirectory>src/main/java</outputDirectory>
+            <directory>${basedir}/target/generated-sources/react</directory>
+            <excludes>
+                <exclude>com/example/application/base/ui/**</exclude>
+                <exclude>com/example/application/greeting/ui/**</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
             <outputDirectory/>
             <directory>${basedir}/../walking-skeleton</directory>
             <includes>
@@ -23,8 +31,7 @@
             <excludes>
                 <exclude>src/main/bundles/**</exclude>
                 <exclude>src/main/frontend/generated/**</exclude>
-                <exclude>src/main/java/com/example/application/base/ui/**</exclude>
-                <exclude>src/main/java/com/example/application/greeting/ui/**</exclude>
+                <exclude>src/main/java/**</exclude> <!-- Included from generated-sources/react instead -->
             </excludes>
         </fileSet>
     </fileSets>

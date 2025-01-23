@@ -2,8 +2,10 @@ package com.example.application.greeting.service;
 
 import com.example.application.greeting.domain.Greeting;
 import com.example.application.greeting.domain.GreetingRepository;
+//#if ui.framework == "react"
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+//#endif
 import com.vaadin.hilla.crud.CountService;
 import com.vaadin.hilla.crud.JpaFilterConverter;
 import com.vaadin.hilla.crud.ListService;
@@ -19,8 +21,10 @@ import java.time.Clock;
 import java.util.List;
 
 @Service
+//#if ui.framework == "react"
 @BrowserCallable
-@AnonymousAllowed // TODO Replace with real security
+@AnonymousAllowed
+//#endif
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class GreetingService implements ListService<Greeting>, CountService {
 

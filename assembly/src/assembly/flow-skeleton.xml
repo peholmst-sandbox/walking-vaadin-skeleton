@@ -7,6 +7,10 @@
     </formats>
     <fileSets>
         <fileSet>
+            <outputDirectory>src/main/java</outputDirectory>
+            <directory>${basedir}/target/generated-sources/flow</directory>
+        </fileSet>
+        <fileSet>
             <outputDirectory/>
             <directory>${basedir}/../walking-skeleton</directory>
             <includes>
@@ -25,6 +29,7 @@
                 <exclude>src/main/frontend/generated/**</exclude>
                 <exclude>src/main/frontend/components/**</exclude>
                 <exclude>src/main/frontend/views/**</exclude>
+                <exclude>src/main/java/**</exclude> <!-- Included from generated-sources/flow instead -->
             </excludes>
         </fileSet>
     </fileSets>

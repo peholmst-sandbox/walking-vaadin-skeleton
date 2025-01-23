@@ -1,7 +1,9 @@
 package com.example.application.greeting.domain;
 
 import com.example.application.base.domain.AbstractEntity;
+//#if ui.framework == "react"
 import com.fasterxml.jackson.annotation.JsonProperty;
+//#endif
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.jspecify.annotations.Nullable;
@@ -17,9 +19,9 @@ public class Greeting extends AbstractEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dummy_id")
+    //#if ui.framework == "react"
     @JsonProperty
-    // Hilla should stop ignoring the ID property (from AbstractEntity) and generate
-    // it into the GreetingModel.
+    //#endif
     private Long id;
 
     @Column(name = "greeting", nullable = false, length = GREETING_MAX_LENGTH)

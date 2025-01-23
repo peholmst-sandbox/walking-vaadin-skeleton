@@ -40,6 +40,45 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.igormaznitsa</groupId>
+                <artifactId>jcp</artifactId>
+                <version>7.1.2</version>
+                <executions>
+                    <execution>
+                        <id>preprocess-react</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>preprocess</goal>
+                        </goals>
+                        <configuration>
+                            <vars>
+                                <ui.framework>react</ui.framework>
+                            </vars>
+                            <target>${basedir}/target/generated-sources/react</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>preprocess-flow</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>preprocess</goal>
+                        </goals>
+                        <configuration>
+                            <vars>
+                                <ui.framework>flow</ui.framework>
+                            </vars>
+                            <target>${basedir}/target/generated-sources/flow</target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sources>
+                        <source>${basedir}/../walking-skeleton/src/main/java</source>
+                    </sources>
+                    <keepLines>false</keepLines>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
