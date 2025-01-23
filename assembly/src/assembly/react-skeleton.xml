@@ -23,10 +23,8 @@
             <excludes>
                 <exclude>src/main/bundles/**</exclude>
                 <exclude>src/main/frontend/generated/**</exclude>
-                <exclude>src/main/java/com/example/application/base/component/**</exclude>
-                <exclude>src/main/java/com/example/application/base/view/**</exclude>
-                <exclude>src/main/java/com/example/application/greeting/view/**</exclude>
-                <exclude>src/test/java/com/example/application/greeting/view/**</exclude>
+                <exclude>src/main/java/com/example/application/base/ui/**</exclude>
+                <exclude>src/main/java/com/example/application/greeting/ui/**</exclude>
             </excludes>
         </fileSet>
     </fileSets>

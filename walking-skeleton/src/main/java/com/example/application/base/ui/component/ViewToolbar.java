@@ -1,4 +1,4 @@
-package com.example.application.base.component;
+package com.example.application.base.ui.component;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
