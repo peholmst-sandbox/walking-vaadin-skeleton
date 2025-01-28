@@ -13,14 +13,18 @@ import com.vaadin.hilla.crud.filter.Filter;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.Pageable;
+//#if ui.framework == "flow"
 import org.springframework.stereotype.Service;
+//#endif
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Clock;
 import java.util.List;
 
+//#if ui.framework == "flow"
 @Service
+//#endif
 //#if ui.framework == "react"
 @BrowserCallable
 @AnonymousAllowed
