@@ -1,4 +1,3 @@
-
 @NullMarked
 package com.example.application.base.ui.component;
 
