@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@polymer/polymer": "3.5.2",
-    "@vaadin/bundles": "24.7.0-alpha5",
+    "@vaadin/bundles": "24.7.0-alpha7",
     "@vaadin/common-frontend": "0.0.19",
     "@vaadin/hilla-file-router": "24.7.0-alpha9",
     "@vaadin/hilla-frontend": "24.7.0-alpha9",
@@ -14,12 +14,12 @@
     "@vaadin/hilla-react-form": "24.7.0-alpha9",
     "@vaadin/hilla-react-i18n": "24.7.0-alpha9",
     "@vaadin/hilla-react-signals": "24.7.0-alpha9",
-    "@vaadin/polymer-legacy-adapter": "24.7.0-alpha5",
-    "@vaadin/react-components": "24.7.0-alpha5",
+    "@vaadin/polymer-legacy-adapter": "24.7.0-alpha7",
+    "@vaadin/react-components": "24.7.0-alpha7",
     "@vaadin/vaadin-development-mode-detector": "2.0.7",
-    "@vaadin/vaadin-lumo-styles": "24.7.0-alpha5",
-    "@vaadin/vaadin-material-styles": "24.7.0-alpha5",
-    "@vaadin/vaadin-themable-mixin": "24.7.0-alpha5",
+    "@vaadin/vaadin-lumo-styles": "24.7.0-alpha7",
+    "@vaadin/vaadin-material-styles": "24.7.0-alpha7",
+    "@vaadin/vaadin-themable-mixin": "24.7.0-alpha7",
     "@vaadin/vaadin-usage-statistics": "2.1.3",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
@@ -62,7 +62,7 @@
   "vaadin": {
     "dependencies": {
       "@polymer/polymer": "3.5.2",
-      "@vaadin/bundles": "24.7.0-alpha5",
+      "@vaadin/bundles": "24.7.0-alpha7",
       "@vaadin/common-frontend": "0.0.19",
       "@vaadin/hilla-file-router": "24.7.0-alpha9",
       "@vaadin/hilla-frontend": "24.7.0-alpha9",
@@ -72,12 +72,12 @@
       "@vaadin/hilla-react-form": "24.7.0-alpha9",
       "@vaadin/hilla-react-i18n": "24.7.0-alpha9",
       "@vaadin/hilla-react-signals": "24.7.0-alpha9",
-      "@vaadin/polymer-legacy-adapter": "24.7.0-alpha5",
-      "@vaadin/react-components": "24.7.0-alpha5",
+      "@vaadin/polymer-legacy-adapter": "24.7.0-alpha7",
+      "@vaadin/react-components": "24.7.0-alpha7",
       "@vaadin/vaadin-development-mode-detector": "2.0.7",
-      "@vaadin/vaadin-lumo-styles": "24.7.0-alpha5",
-      "@vaadin/vaadin-material-styles": "24.7.0-alpha5",
-      "@vaadin/vaadin-themable-mixin": "24.7.0-alpha5",
+      "@vaadin/vaadin-lumo-styles": "24.7.0-alpha7",
+      "@vaadin/vaadin-material-styles": "24.7.0-alpha7",
+      "@vaadin/vaadin-themable-mixin": "24.7.0-alpha7",
       "@vaadin/vaadin-usage-statistics": "2.1.3",
       "construct-style-sheets-polyfill": "3.1.0",
       "date-fns": "2.29.3",
@@ -117,7 +117,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "f05d2ae96b8cf184df6973d345ffef5fda3c419b14e1eba7ee20390bb9f2fa81"
+    "hash": "58bfa2c14628bb4c36fb9994c7778835ad58abdc8b2bc05bd1a7c1054b21a73d"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
