@@ -1,11 +1,12 @@
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
 import { Notification } from '@vaadin/react-components/Notification';
-import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { GreetingService } from 'Frontend/generated/endpoints';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
-import { ViewToolbar, Group } from 'Frontend/components/ViewToolbar';
+import { Group, ViewToolbar } from 'Frontend/components/ViewToolbar';
+import Greeting from 'Frontend/generated/com/example/application/greeting/domain/Greeting';
+import { useDataProvider } from '@vaadin/hilla-react-crud';
 
 export const config: ViewConfig = {
   title: 'Greetings from Hilla',
@@ -22,10 +23,12 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 });
 
 export default function GreetingView() {
-  const dataProvider = useDataProvider(GreetingService);
+  const dataProvider = useDataProvider<Greeting>({
+    list: (pageable) => GreetingService.list(pageable),
+  });
+
   const name = useSignal('');
   const greet = async () => {
-    // TODO This is not really React-like, more like a Java dev trying to write React code for the first time.
     try {
       await GreetingService.greet(name.value);
       dataProvider.refresh();

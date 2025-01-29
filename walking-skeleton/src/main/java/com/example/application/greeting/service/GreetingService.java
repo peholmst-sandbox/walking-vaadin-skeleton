@@ -6,12 +6,6 @@ import com.example.application.greeting.domain.GreetingRepository;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 //#endif
-import com.vaadin.hilla.crud.CountService;
-import com.vaadin.hilla.crud.JpaFilterConverter;
-import com.vaadin.hilla.crud.ListService;
-import com.vaadin.hilla.crud.filter.Filter;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.Pageable;
 //#if ui.framework == "flow"
 import org.springframework.stereotype.Service;
@@ -30,7 +24,7 @@ import java.util.List;
 @AnonymousAllowed
 //#endif
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class GreetingService implements ListService<Greeting>, CountService {
+public class GreetingService {
 
     private final GreetingRepository greetingRepository;
 
@@ -51,14 +45,8 @@ public class GreetingService implements ListService<Greeting>, CountService {
         greetingRepository.saveAndFlush(greeting);
     }
 
-    @Override
-    public @NonNull List<Greeting> list(Pageable pageable, @Nullable Filter filter) {
-        return greetingRepository.findAll(JpaFilterConverter.toSpec(filter, Greeting.class), pageable).toList();
-    }
-
-    @Override
-    public long count(@Nullable Filter filter) {
-        return greetingRepository.count(JpaFilterConverter.toSpec(filter, Greeting.class));
+    public List<Greeting> list(Pageable pageable) {
+        return greetingRepository.findAllBy(pageable).toList();
     }
 
 }
