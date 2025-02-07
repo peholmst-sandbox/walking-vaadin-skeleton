@@ -11,7 +11,7 @@
             <directory>${basedir}/target/generated-sources/react</directory>
             <excludes>
                 <exclude>com/example/application/base/ui/**</exclude>
-                <exclude>com/example/application/greeting/ui/**</exclude>
+                <exclude>com/example/application/todo/ui/**</exclude>
             </excludes>
         </fileSet>
         <fileSet>

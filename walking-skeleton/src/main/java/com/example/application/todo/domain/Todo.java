@@ -45,16 +45,16 @@ public class Todo extends AbstractEntity<Long> {
         return description;
     }
 
-    public void setDescription(String greeting) {
-        this.description = greeting;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Instant getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Instant greetingDate) {
-        this.creationDate = greetingDate;
+    public void setCreationDate(Instant creationDate) {
+        this.creationDate = creationDate;
     }
 
     public @Nullable LocalDate getDueDate() {
