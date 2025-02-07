@@ -1,64 +1,94 @@
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, Grid, GridColumn, TextField } from '@vaadin/react-components';
+import { Button, DatePicker, Grid, GridColumn, TextField } from '@vaadin/react-components';
 import { Notification } from '@vaadin/react-components/Notification';
-import { GreetingService } from 'Frontend/generated/endpoints';
+import { TodoService } from 'Frontend/generated/endpoints';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
 import { Group, ViewToolbar } from 'Frontend/components/ViewToolbar';
-import Greeting from 'Frontend/generated/com/example/application/greeting/domain/Greeting';
+import Todo from 'Frontend/generated/com/example/application/todo/domain/Todo';
 import { useDataProvider } from '@vaadin/hilla-react-crud';
 
 export const config: ViewConfig = {
-  title: 'Greetings from Hilla',
+  title: 'Task List',
   menu: {
-    icon: 'vaadin:cube',
+    icon: 'vaadin:clipboard-check',
     order: 1,
-    title: 'Greetings (Hilla)',
+    title: 'Task List',
   },
 };
 
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
+const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: 'medium',
   timeStyle: 'medium',
 });
 
-export default function GreetingView() {
-  const dataProvider = useDataProvider<Greeting>({
-    list: (pageable) => GreetingService.list(pageable),
-  });
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  dateStyle: 'medium',
+});
 
-  const name = useSignal('');
-  const greet = async () => {
+type TodoEntryFormProps = {
+  onTodoCreated?: () => void;
+};
+
+function TodoEntryForm(props: TodoEntryFormProps) {
+  const description = useSignal('');
+  const dueDate = useSignal<string | undefined>('');
+  const createTodo = async () => {
     try {
-      await GreetingService.greet(name.value);
-      dataProvider.refresh();
-      name.value = '';
-      Notification.show('Greeting added', { duration: 3000, position: 'bottom-end', theme: 'success' });
+      await TodoService.createTodo(description.value, dueDate.value);
+      if (props.onTodoCreated) {
+        props.onTodoCreated();
+      }
+      description.value = '';
+      dueDate.value = undefined;
+      Notification.show('Task added', { duration: 3000, position: 'bottom-end', theme: 'success' });
     } catch (error) {
       handleError(error);
     }
   };
   return (
+    <>
+      <TextField
+        placeholder="What do you want to do?"
+        aria-label="Task description"
+        maxlength={255}
+        style={{ minWidth: '20em' }}
+        value={description.value}
+        onValueChanged={(evt) => (description.value = evt.detail.value)}
+      />
+      <DatePicker
+        placeholder="Due date"
+        aria-label="Due date"
+        value={dueDate.value}
+        onValueChanged={(evt) => (dueDate.value = evt.detail.value)}
+      />
+      <Button onClick={createTodo} theme="primary">
+        Create
+      </Button>
+    </>
+  );
+}
+
+export default function TodoView() {
+  const dataProvider = useDataProvider<Todo>({
+    list: (pageable) => TodoService.list(pageable),
+  });
+
+  return (
     <main className="w-full h-full flex flex-col box-border gap-s p-m">
-      <ViewToolbar title="Greetings from Hilla">
+      <ViewToolbar title="Task List">
         <Group>
-          <TextField
-            placeholder="What is your name?"
-            aria-label="Enter your name"
-            maxlength={255}
-            value={name.value}
-            onValueChanged={(evt) => (name.value = evt.detail.value)}
-          />
-          <Button onClick={greet} theme="primary">
-            Greet
-          </Button>
+          <TodoEntryForm onTodoCreated={dataProvider.refresh} />
         </Group>
         <Button onClick={dataProvider.refresh}>Refresh</Button>
       </ViewToolbar>
       <Grid dataProvider={dataProvider.dataProvider}>
-        <GridColumn path="greeting" />
-        <GridColumn path="greetingDate" header="Date">
-          {({ item }) => dateFormatter.format(new Date(item.greetingDate))}
+        <GridColumn path="description" />
+        <GridColumn path="dueDate" header="DueDate">
+          {({ item }) => (item.dueDate ? dateFormatter.format(new Date(item.dueDate)) : 'Never')}
+        </GridColumn>
+        <GridColumn path="creationDate" header="Creation Date">
+          {({ item }) => dateTimeFormatter.format(new Date(item.creationDate))}
         </GridColumn>
       </Grid>
     </main>
