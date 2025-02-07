@@ -4,7 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.avatar.AvatarVariant;
-import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -27,7 +27,7 @@ public final class MainLayout extends AppLayout {
         addToDrawer(createHeader(), new Scroller(createSideNav()), createUserMenu());
     }
 
-    private Header createHeader() {
+    private Div createHeader() {
         // TODO Replace with real application logo and name
         var appLogo = VaadinIcon.CUBES.create();
         appLogo.addClassNames(TextColor.PRIMARY, IconSize.LARGE);
@@ -35,7 +35,7 @@ public final class MainLayout extends AppLayout {
         var appName = new Span("Walking Skeleton");
         appName.addClassNames(FontWeight.SEMIBOLD, FontSize.LARGE);
 
-        var header = new Header(appLogo, appName);
+        var header = new Div(appLogo, appName);
         header.addClassNames(Display.FLEX, Padding.MEDIUM, Gap.MEDIUM, AlignItems.CENTER);
         return header;
     }

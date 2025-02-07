@@ -39,6 +39,7 @@ public class GreetingView extends Main {
 
         name = new TextField();
         name.setPlaceholder("What is your name?");
+        name.setAriaLabel("Enter your name");
         name.setMaxLength(Greeting.GREETING_MAX_LENGTH);
         name.addKeyPressListener(Key.ENTER, event -> greet());
 
