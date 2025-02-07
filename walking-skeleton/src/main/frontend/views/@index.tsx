@@ -44,6 +44,7 @@ export default function GreetingView() {
         <Group>
           <TextField
             placeholder="What is your name?"
+            aria-label="Enter your name"
             maxlength={255}
             value={name.value}
             onValueChanged={(evt) => (name.value = evt.detail.value)}
