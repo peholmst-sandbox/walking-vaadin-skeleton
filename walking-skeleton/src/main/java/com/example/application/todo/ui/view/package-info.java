@@ -1,4 +1,4 @@
 @NullMarked
-package com.example.application.greeting.ui.view;
+package com.example.application.todo.ui.view;
 
 import org.jspecify.annotations.NullMarked;
