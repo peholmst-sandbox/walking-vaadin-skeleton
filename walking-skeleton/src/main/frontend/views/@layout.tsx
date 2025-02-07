@@ -27,7 +27,7 @@ function MainMenu() {
   const location = useLocation();
 
   return (
-    <SideNav className="mx-m" onNavigate={({ path }) => path && navigate(path)} location={location}>
+    <SideNav className="mx-m" onNavigate={({ path }) => path != null && navigate(path)} location={location}>
       {createMenuItems().map(({ to, icon, title }) => (
         <SideNavItem path={to} key={to}>
           {icon && <Icon icon={icon} slot="prefix" />}
