@@ -80,7 +80,6 @@ export default function TodoView() {
         <Group>
           <TodoEntryForm onTodoCreated={dataProvider.refresh} />
         </Group>
-        <Button onClick={dataProvider.refresh}>Refresh</Button>
       </ViewToolbar>
       <Grid dataProvider={dataProvider.dataProvider}>
         <GridColumn path="description" />
