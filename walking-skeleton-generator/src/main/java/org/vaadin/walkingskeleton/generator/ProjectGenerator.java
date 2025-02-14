@@ -43,6 +43,7 @@ class ProjectGenerator {
         moveJavaClasses(testJava, projectConfiguration.basePackage());
 
         FileUtils.replaceInFiles(projectDirectory, FileUtils.nameEndsWith(".java", ".properties"), Map.of("com.example.application", projectConfiguration.basePackage().toString()));
+        FileUtils.replaceInFiles(projectDirectory, FileUtils.nameEndsWith(".tsx"), Map.of("Frontend/generated/com/example/application", "Frontend/generated/" + projectConfiguration.basePackage().toString().replace('.', '/')));
     }
 
     private void renameRootDirectory(Path projectDirectory, ProjectConfiguration projectConfiguration) throws IOException {
